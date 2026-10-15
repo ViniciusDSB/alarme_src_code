@@ -87,6 +87,10 @@ begin
       WHEN "1111" =>
         display <= "01110001";
 
+      -- Invalid or undefined input
+      WHEN OTHERS =>
+        display <= "11111111";
+
     END CASE;
    END PROCESS;
 

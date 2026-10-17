@@ -19,49 +19,30 @@ entity trava is
 end entity;
 
 architecture behavioral of trava is
-    type state_type is (q0, q1, q2, q3);
-    signal current_state, next_state : state_type;
+    type state_type is (q0, q1);
+    signal current_state : state_type;
     signal timer : natural range 0 to 255 := tempo_para_desarme;
 begin
 
-    process (clock, reset, input, timer)
+    process (clock, reset)
     begin
         if reset = '1' then
             current_state <= q0;
             timer <= tempo_para_desarme;
-
-        elsif (clock'event and clock = '1') then 
-            if (current_state = q1 or current_state = q2) and timer > 0 then
-                timer <= timer - 1;
-            end if;
-
+        elsif rising_edge(clock) then
             case current_state is
                 when q0 =>
-                    timer <= tempo_para_desarme;
-                    current_state <= q1;
-                    
-                when q1 => 
                     if timer = 0 then
-                        current_state <= q0;
-                    elsif input'event then
-                        current_state <= q2;
-                    else
                         current_state <= q1;
-                    end if;
-    
-                when q2 => 
-                    if input = std_logic_vector(to_unsigned(senha, input'length)) and timer > 0 then 
-                        current_state <= q3;
-                    elsif timer = 0 then
-                        current_state <= q0;
-                    else
+                    elsif input = std_logic_vector(to_unsigned(senha, segundos'length)) then
                         current_state <= q1;
+                    else
+                        timer <= timer - 1;
                     end if;
 
-                when q3 =>
-                    timer <= 0;
-                    current_state <= q3;
-            end case;
+                when q1 =>
+                    null;
+              end case;
         end if;
     end process;
 
@@ -73,14 +54,6 @@ begin
                 trava_out <= '1';
 
             when q1 =>
-                segundos <= std_logic_vector(to_unsigned(timer, segundos'length));
-                trava_out <= '1';
-
-            when q2 =>
-                segundos <= std_logic_vector(to_unsigned(timer, segundos'length));
-                trava_out <= '1';
-
-            when q3 =>
                 segundos <= std_logic_vector(to_unsigned(timer, segundos'length));
                 trava_out <= '0';
         end case;

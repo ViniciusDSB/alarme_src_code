@@ -1,0 +1,13 @@
+v 4
+file . "binto7seg.vhd" "a129619c364e4e6607161315614a36bae0027b62" "20261017054505.324":
+  entity binto7seg at 1( 0) + 0 on 15;
+  architecture seg_machine of binto7seg at 12( 255) + 0 on 16;
+file . "clk_div.vhd" "0bebd807d762dc33823d71635230fb395e3d1b70" "20261017054505.324":
+  entity clk_div at 1( 0) + 0 on 11;
+  architecture divisor of clk_div at 15( 224) + 0 on 12;
+file . "main.vhd" "1ad95cf8339f6f0f095d4fdba501659f7db4867b" "20261017054505.324":
+  entity main at 1( 0) + 0 on 17;
+  architecture container of main at 20( 405) + 0 on 18;
+file . "trava.vhd" "d1ff3ebb42322460fbc3662a0cd614a8fe514fc4" "20261017054505.324":
+  entity trava at 1( 0) + 0 on 13;
+  architecture behavioral of trava at 21( 634) + 0 on 14;

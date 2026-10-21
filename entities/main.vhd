@@ -7,12 +7,13 @@ entity main is
         real_clk: in std_logic;
 
         reset_sw: in std_logic;
-        input_sw: in std_logic_vector( 7 downto 0);
+        input_sw: in std_logic_vector(7 downto 0);
+        led: out std_logic_vector(7 downto 0);
         trava_out_led: out std_logic;
 
         -- Saida dos segundos
-        display_R: out std_logic_vector( 7 downto 0 );
-        display_L: out std_logic_vector( 7 downto 0 )
+        display_R: out std_logic_vector(7 downto 0);
+        display_L: out std_logic_vector(7 downto 0)
     );
 
 end entity;
@@ -30,6 +31,7 @@ architecture container of main is
     signal right_bits: std_logic_vector( 3 downto 0 ) ; -- (xxxx)xxxx
 
 begin
+    led <= input_sw;
 
     divisor_clock: entity work.clk_div(divisor)
         generic map(

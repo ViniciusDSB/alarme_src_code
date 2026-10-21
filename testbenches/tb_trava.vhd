@@ -5,7 +5,7 @@ entity tb_trava is
 end;
 
 architecture test_trava of tb_trava is
-    constant senha : positive := 56;
+    constant senha : positive := 1;
     constant tempo_para_desarme : natural := 30;
 
     signal test_clock, reset, trava_out : std_logic;
@@ -30,7 +30,7 @@ begin
         input : std_logic_vector(7 downto 0);
       end record;
 
-      type vet_linha_tv is array(0 to 12) of linha_tv;
+      type vet_linha_tv is array(0 to 11) of linha_tv;
       constant tabela_verdade : vet_linha_tv := (
         -- 1z  reset  tr_out     input  
         ('0', '1',    '1',  "00000000"), -- fica em q0 fazendo nada
@@ -42,8 +42,8 @@ begin
         ('0', '0',    '1',  "00000000"), -- fica em q1 descontando segundos
         ('1', '0',    '1',  "00000000"), -- fica em q1 descontando segundos
         ('0', '0',    '1',  "00000000"), -- fica em q1 descontando segundos
-        ('1', '0',    '1',  "00000001"), -- entrada muda, vai a q2 pois senha é correta
-        ('1', '0',    '0',  "00000001"), -- fica em q2 fazendo nada
+        ('1', '0',    '0',  "00000001"), -- entrada muda, senha é correta, vai a q2
+        ('0', '0',    '0',  "00000001"), -- fica em q2 fazendo nada
         ('1', '0',    '0',  "00000001")  -- fica em q2 fazendo nada
       );
     begin

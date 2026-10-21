@@ -19,7 +19,7 @@ entity trava is
 end entity;
 
 architecture behavioral of trava is
-    type state_type is (q0, q1, q2, q3);
+    type state_type is (q0, q1, q2);
     signal current_state : state_type;
     signal timer : natural range 0 to 255 := tempo_para_desarme;
 begin
@@ -39,7 +39,7 @@ begin
                     end if;
 
                 when q1 =>
-                    if input'event then 
+                    if input = std_logic_vector(to_unsigned(senha, segundos'length)) then
                         current_state <= q2;
                     elsif reset = '1' then
                         current_state <= q0;
@@ -48,19 +48,10 @@ begin
                     end if;
 
                 when q2 =>
-                    if input = std_logic_vector(to_unsigned(senha, segundos'length)) then
-                        current_state <= q3;
-                    elsif reset = '1' then
-                        current_state <= q0;
-                    else 
-                        current_state <= q1;
-                    end if;
-
-                when q3 =>
                     if reset = '1' then
                         current_state <= q0;
                     else
-                        current_state <= q3;
+                        current_state <= q2;
                     end if;
 
               end case;
@@ -80,10 +71,6 @@ begin
                 trava_out <= '1';
                 
             when q2 =>
-                segundos <= std_logic_vector(to_unsigned(timer, segundos'length));
-                trava_out <= '1';
-
-            when q3 =>
                 segundos <= std_logic_vector(to_unsigned(timer, segundos'length));
                 trava_out <= '0';
 

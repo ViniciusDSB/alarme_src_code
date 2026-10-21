@@ -1,13 +1,13 @@
 v 4
-file . "trava.vhd" "dc41cb5f29dde3f85121edc58e1f091860d9781c" "20261021012425.881":
-  entity trava at 1( 0) + 0 on 13;
-  architecture behavioral of trava at 21( 646) + 0 on 14;
-file . "main.vhd" "eb678ef9741c75728f34d4382b6237d6468647c9" "20261021012425.881":
-  entity main at 1( 0) + 0 on 17;
-  architecture container of main at 20( 405) + 0 on 18;
-file . "clk_div.vhd" "74bc1c290fc7b36d22b3fdaa37735cb4fe0d7bb8" "20261021012425.881":
-  entity clk_div at 1( 0) + 0 on 11;
-  architecture divisor of clk_div at 13( 244) + 0 on 12;
 file . "binto7seg.vhd" "a129619c364e4e6607161315614a36bae0027b62" "20261021012425.881":
   entity binto7seg at 1( 0) + 0 on 15;
   architecture seg_machine of binto7seg at 12( 255) + 0 on 16;
+file . "clk_div.vhd" "74bc1c290fc7b36d22b3fdaa37735cb4fe0d7bb8" "20261021012425.881":
+  entity clk_div at 1( 0) + 0 on 11;
+  architecture divisor of clk_div at 13( 244) + 0 on 12;
+file . "main.vhd" "eb678ef9741c75728f34d4382b6237d6468647c9" "20261021013735.961":
+  entity main at 1( 0) + 0 on 21;
+  architecture container of main at 20( 405) + 0 on 22;
+file . "trava.vhd" "efa27678c9c2b7e9ed95efe23a944dd6ef7beec5" "20261021013735.961":
+  entity trava at 1( 0) + 0 on 19;
+  architecture behavioral of trava at 21( 646) + 0 on 20;

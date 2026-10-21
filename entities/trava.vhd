@@ -29,6 +29,7 @@ begin
         if reset = '1' then
             current_state <= q0;
             timer <= tempo_para_desarme;
+            
         elsif rising_edge(clock) then
             case current_state is
                 when q0 =>
@@ -39,11 +40,14 @@ begin
                     end if;
 
                 when q1 =>
-                    if input = std_logic_vector(to_unsigned(senha, segundos'length)) then
+                    if timer = 0 then
+                        current_state <= q1;
+                    elsif input = std_logic_vector(to_unsigned(senha, segundos'length)) then
                         current_state <= q2;
                     elsif reset = '1' then
                         current_state <= q0;
                     else
+                        timer <= timer - 1;
                         current_state <= q1;
                     end if;
 
@@ -66,7 +70,6 @@ begin
                 trava_out <= '1';
 
             when q1 =>
-                timer <= timer - 1;
                 segundos <= std_logic_vector(to_unsigned(timer, segundos'length));
                 trava_out <= '1';
                 

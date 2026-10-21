@@ -32,6 +32,10 @@ architecture container of main is
 begin
 
     divisor_clock: entity work.clk_div(divisor)
+        generic map(
+          MAX_CICLES => 25000000
+        )
+
         port map(
             clk => real_clk,
             out_clk => clk_1hz

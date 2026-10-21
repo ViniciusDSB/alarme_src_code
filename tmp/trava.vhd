@@ -42,6 +42,7 @@ begin
                 when q1 =>
                     if timer = 0 then
                         current_state <= q1;
+                        
                     elsif input = std_logic_vector(to_unsigned(senha, segundos'length)) then
                         current_state <= q2;
                     elsif reset = '1' then

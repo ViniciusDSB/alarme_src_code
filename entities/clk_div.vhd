@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 
 entity clk_div is
-    generic(MAX_CICLES : natural := 25000000);
+    generic(MAX_CICLES : natural := 25000000); -- half of 50 000 000 = 50Mhz
     
     port(
         clk: in std_logic;

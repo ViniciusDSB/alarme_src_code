@@ -70,7 +70,7 @@ binto7Seg_one: entity work.binto7seg(seg_machine)
             
         end loop; 
 
-            report "SUCESSO CARALHOOOOOO";
+            report "SUCESSO";
             wait;
 
     end process;

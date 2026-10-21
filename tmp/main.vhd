@@ -8,7 +8,7 @@ entity main is
 
         reset_sw: in std_logic;
         input_sw: in std_logic_vector( 7 downto 0);
-        trava_out_led: out std_logic;
+        trava_out: out std_logic;
 
         -- Saida dos segundos
         display_R: out std_logic_vector( 7 downto 0 );
@@ -32,6 +32,10 @@ architecture container of main is
 begin
 
     divisor_clock: entity work.clk_div(divisor)
+        generic map(
+          MAX_CICLES => 25000000
+        )
+
         port map(
             clk => real_clk,
             out_clk => clk_1hz
@@ -48,7 +52,7 @@ begin
             reset => reset_sw,
             input => input_sw,
             segundos => aux_segundos,
-            trava_out => trava_out_led
+            trava_out => trava_out
         );
 
     
